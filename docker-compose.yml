@@ -1,0 +1,21 @@
+version: '3.9'
+
+
+services:
+  dev-db:
+    image: postgres:13
+    restart: always
+    ports:
+      - "5433:5432"
+    env_file:
+      - ./.env
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+name: fastapi-development
