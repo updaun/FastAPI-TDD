@@ -1,5 +1,8 @@
 version: '3.9'
 
+networks:
+  dev-network:
+    driver: bridge
 
 services:
   dev-db:
@@ -11,6 +14,8 @@ services:
       - ./.env
     volumes:
       - ./scripts:/docker-entrypoint-initdb.d
+    networks:
+      - dev-network
 
   adminer:
     image: adminer
